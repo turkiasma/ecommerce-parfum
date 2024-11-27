@@ -1,0 +1,271 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slider-container {
+  width: 95%;
+  margin-top: 1px; /* Adjust this value to move it closer to the top */
+  padding: 0 10px;
+
+}
+.slider-container h3 {
+  font-family: 'Cormorant Garamond', serif; /* Use an elegant serif font */
+  font-size: 1.1rem; /* Adjust the size */
+  color: #000000; /* Change to a classy dark color */
+  text-align: center; /* Center the text */
+  letter-spacing: 0.8px; /* Add some spacing for elegance */
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  color: #000000; /* Gold-like shade */
+}
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+/* Global styles */
+body {
+  font-family: 'Inter', sans-serif; /* Use Inter font globally */
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Slider Container Styling */
+.slider-container {
+  width: 95%;
+  margin-top: 1px; /* Adjust this value to move it closer to the top */
+  padding: 0 10px;
+
+}
+.slider-container h3 {
+  font-family: 'Cormorant Garamond', serif; /* Use an elegant serif font */
+  font-size: 1.1rem; /* Adjust the size */
+  color: #000000; /* Change to a classy dark color */
+  text-align: center; /* Center the text */
+  letter-spacing: 0.8px; /* Add some spacing for elegance */
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  color: #000000; /* Gold-like shade */
+}
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+/* Global styles */
+body {
+  font-family: 'Inter', sans-serif; /* Use Inter font globally */
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Slider Container Styling */
+.slider-container {
+  width: 95%;
+  margin-top: 1px;
+  padding: 0 10px;
+}
+
+.slider-container h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #000000;
+  text-align: center;
+  letter-spacing: 0.8px;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+/* App.css or Navbar.css */
+
+.ant-menu-horizontal {
+  font-size: 18px; /* Increase the text size */
+  padding: 12px 24px; /* Add more padding to the navbar */
+}
+
+.ant-menu-item {
+  display: flex;
+  align-items: center;
+}
+
+.ant-menu-item .anticon {
+  font-size: 30px; /* Make the icons larger */
+  margin-right: 8px; /* Space between icon and text (if you add labels later) */
+}
+
+.ant-menu-item:hover {
+  background-color: #f0f2f5; /* Light background color on hover */
+}
+
+.slider-container {/*copy  from here*/
+  width: 95%;
+  margin-top: 1px; /* Adjust this value to move it closer to the top */
+  padding: 0 10px;
+}
+.slider-container h3 {
+  font-family: 'Cormorant Garamond', serif; /* Use an elegant serif font */
+  font-size: 1.3rem; /* Adjust the size */
+  color: #333; /* Change to a classy dark color */
+  text-align: center; /* Center the text */
+  letter-spacing: 0.8px; /* Add some spacing for elegance */
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  color: #c5a880; /* Gold-like shade */
+}
+.select-scent-title {
+  font-size: 1rem; /* Decrease the font size */
+  font-family: 'Playfair Display', serif; /* Elegant serif font */
+  color: #333; /* Classy dark color */
+  margin-bottom: 10px; /* Add some spacing below */
+}
+.scent-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  /* Adjust the gap between items */
+}
+
+/*navbar fixed*/
+/* Sticky Navbar */
+.navbar {
+  position: sticky;  /* This makes the navbar sticky */
+  top: 0;            /* Keep it at the top */
+  width: 100%;       /* Ensure full width */
+  background-color: white;
+  border-bottom: 1px solid black;
+  z-index: 10;       /* Ensure it's above other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+}
+
+/* Footer.css */
+.footer {
+  background-color:black;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.footer-company-name h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.footer-socials a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.footer-socials a:hover {
+  color:  #c5a880; /* Change this to your desired hover color */
+}
