@@ -1,41 +1,42 @@
-import React from "react";
-import { Layout } from "antd";
-import Navbar from "./Components/Navbar";
-import FilterAppBar from "./Components/FilterAppBar";
-import Caroussel from "./Components/Caroussel";
-import Video from "./Components/Video"; // Import your Card component
-import Card from "./Components/Card"; // Import your Card component
-import Footer from "./Components/Footer"; // Adjust the path as necessary
-import "./App.css";
-
-const { Content } = Layout;
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom"; // Import BrowserRouter
+import ListOfProducts from "./Components/UserUI/ListOfProducts";
+import Home from "./Components/UserUI/Home"; // Import the new Home component
+import { products } from "./Components/UserUI/Data";
+import ProductDetails from "./Components/UserUI/ProductDetails"; // Import products
 
 const App = () => {
-  return (
-    <Layout>
-      <Caroussel />
-      <Navbar />
-      <FilterAppBar/>
+  const addToBag = (id) => {
+    console.log(`Added product with ID ${id} to the bag`);
+  };
+  // Manage products with useState
+  const [product, setProducts] = useState(products);
 
-      <Layout>
-        {/* Content Area */}
-       
-          <Content
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-              background: "#f0f2f5",
-            }}
-          >
-            <Video />
-            {/* Render the rotating cards below the video */}
-            <Card />
-          </Content>
-      </Layout>
-      <Footer />
-    </Layout>
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Route for the homepage */}
+        <Route path="/" element={<Home products={product} />} />
+
+        {/* Route for the List of Products */}
+        <Route
+          path="/products"
+          element={
+            <ListOfProducts
+              products={product} // Pass products state
+              addToBag={(id) => console.log(`Added product with ID ${id} to the bag`)}
+              showDetails={(id) => console.log(`Show details for product with ID ${id}`)}
+            />
+          }
+        />
+        <Route
+          path="/products/:id"
+          element={<ProductDetails products={product} addToBag={addToBag} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
 export default App;
+

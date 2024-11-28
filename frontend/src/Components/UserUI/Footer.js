@@ -1,7 +1,7 @@
 // Footer.js
 import React from 'react';
 import { FaLinkedin, FaInstagram, FaFacebook } from 'react-icons/fa'; // Import icons
-import '../App'; // You can style the footer in a separate CSS file
+import '../../App'; // You can style the footer in a separate CSS file
 
 const Footer = () => {
   return (
