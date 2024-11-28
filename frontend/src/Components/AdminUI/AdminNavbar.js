@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 const AdminNavbar = () => (
   <Box sx={{ display: "flex", gap: 2, padding: 2, background: "#f5f5f5" }}>
-    <Button component={Link} to="/products">
+    <Button component={Link} to="/admin/products">
       Products
     </Button>
-    <Button component={Link} to="/orders">
+    <Button component={Link} to="/admin/orders">
       Orders
     </Button>
   </Box>

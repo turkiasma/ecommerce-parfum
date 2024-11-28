@@ -4,6 +4,9 @@ import ListOfProducts from "./Components/UserUI/ListOfProducts";
 import Home from "./Components/UserUI/Home"; // Import the new Home component
 import { products } from "./Components/UserUI/Data";
 import ProductDetails from "./Components/UserUI/ProductDetails"; // Import products
+import AdminLayout from "./Components/AdminUI/Layouts/AdminLayout";
+import Products from "./Pages/Products";
+import Orders from "./Pages/Orders";
 
 const App = () => {
   const addToBag = (id) => {
@@ -13,6 +16,7 @@ const App = () => {
   const [product, setProducts] = useState(products);
 
   return (
+    <div>
     <BrowserRouter>
       <Routes>
         {/* Route for the homepage */}
@@ -33,8 +37,13 @@ const App = () => {
           path="/products/:id"
           element={<ProductDetails products={product} addToBag={addToBag} />}
         />
+         <Route path="/admin" element={<AdminLayout />}/>
+        <Route path="/admin/orders" element={<Orders />} />
+        <Route path="/admin/products" element={<Products />} />
+        
       </Routes>
     </BrowserRouter>
+    </div>
   );
 };
 
