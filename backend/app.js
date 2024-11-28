@@ -4,7 +4,8 @@ const connectDb=require('./Configuration/connectDb')
 const app = express(); 
 const dotenv = require("dotenv"); 
 dotenv.config(); 
-const port = process.env.PORT; 
+const port = process.env.PORT;
+// test
 connectDb(); 
 app.listen(port, (error) => { 
 if(error){console.log("Server Failed")} 
