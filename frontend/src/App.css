@@ -39,25 +39,35 @@
 
 .slider-container {
   width: 95%;
-  margin-top: 1px; /* Adjust this value to move it closer to the top */
+  margin-top: 1px;
+  /* Adjust this value to move it closer to the top */
   padding: 0 10px;
 
 }
+
 .slider-container h3 {
-  font-family: 'Cormorant Garamond', serif; /* Use an elegant serif font */
-  font-size: 1.1rem; /* Adjust the size */
-  color: #000000; /* Change to a classy dark color */
-  text-align: center; /* Center the text */
-  letter-spacing: 0.8px; /* Add some spacing for elegance */
+  font-family: 'Cormorant Garamond', serif;
+  /* Use an elegant serif font */
+  font-size: 1.1rem;
+  /* Adjust the size */
+  color: #000000;
+  /* Change to a classy dark color */
+  text-align: center;
+  /* Center the text */
+  letter-spacing: 0.8px;
+  /* Add some spacing for elegance */
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-  color: #000000; /* Gold-like shade */
+  color: #000000;
+  /* Gold-like shade */
 }
+
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
 /* Global styles */
 body {
-  font-family: 'Inter', sans-serif; /* Use Inter font globally */
+  font-family: 'Inter', sans-serif;
+  /* Use Inter font globally */
 }
 
 .App {
@@ -94,6 +104,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -102,25 +113,35 @@ body {
 /* Slider Container Styling */
 .slider-container {
   width: 95%;
-  margin-top: 1px; /* Adjust this value to move it closer to the top */
+  margin-top: 1px;
+  /* Adjust this value to move it closer to the top */
   padding: 0 10px;
 
 }
+
 .slider-container h3 {
-  font-family: 'Cormorant Garamond', serif; /* Use an elegant serif font */
-  font-size: 1.1rem; /* Adjust the size */
-  color: #000000; /* Change to a classy dark color */
-  text-align: center; /* Center the text */
-  letter-spacing: 0.8px; /* Add some spacing for elegance */
+  font-family: 'Cormorant Garamond', serif;
+  /* Use an elegant serif font */
+  font-size: 1.1rem;
+  /* Adjust the size */
+  color: #000000;
+  /* Change to a classy dark color */
+  text-align: center;
+  /* Center the text */
+  letter-spacing: 0.8px;
+  /* Add some spacing for elegance */
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-  color: #000000; /* Gold-like shade */
+  color: #000000;
+  /* Gold-like shade */
 }
+
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
 /* Global styles */
 body {
-  font-family: 'Inter', sans-serif; /* Use Inter font globally */
+  font-family: 'Inter', sans-serif;
+  /* Use Inter font globally */
 }
 
 .App {
@@ -157,6 +178,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -182,8 +204,10 @@ body {
 /* App.css or Navbar.css */
 
 .ant-menu-horizontal {
-  font-size: 18px; /* Increase the text size */
-  padding: 12px 24px; /* Add more padding to the navbar */
+  font-size: 18px;
+  /* Increase the text size */
+  padding: 12px 24px;
+  /* Add more padding to the navbar */
 }
 
 .ant-menu-item {
@@ -192,55 +216,144 @@ body {
 }
 
 .ant-menu-item .anticon {
-  font-size: 30px; /* Make the icons larger */
-  margin-right: 8px; /* Space between icon and text (if you add labels later) */
+  font-size: 30px;
+  /* Make the icons larger */
+  margin-right: 8px;
+  /* Space between icon and text (if you add labels later) */
 }
 
 .ant-menu-item:hover {
-  background-color: #f0f2f5; /* Light background color on hover */
+  background-color: #f0f2f5;
+  /* Light background color on hover */
 }
 
-.slider-container {/*copy  from here*/
-  width: 95%;
-  margin-top: 1px; /* Adjust this value to move it closer to the top */
-  padding: 0 10px;
+/* Caroussel.css */
+
+/* Slider Container */
+.slider-container {
+  width: 100%; /* Full width */
+  padding: 0; /* Remove any padding */
+  background-color: black; /* Full width black background */
 }
+
+/* Slider Text Styling */
 .slider-container h3 {
-  font-family: 'Cormorant Garamond', serif; /* Use an elegant serif font */
-  font-size: 1.3rem; /* Adjust the size */
-  color: #333; /* Change to a classy dark color */
+  font-family: 'Cormorant Garamond', serif; /* Elegant serif font */
+  font-size: 1rem; /* Smaller text */
+  color: #ffffff; /* Gold color for text */
   text-align: center; /* Center the text */
-  letter-spacing: 0.8px; /* Add some spacing for elegance */
-  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-  color: #c5a880; /* Gold-like shade */
+  letter-spacing: 0.8px; /* Add spacing for elegance */
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); /* Slight shadow for text */
+  margin: 10px 0; /* Adjust margins for spacing */
 }
+
+/* Slick Slider Adjustments */
+.slick-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-prev, .slick-next {
+  color: #d4af37; /* Gold arrows */
+}
+
+.slick-prev:hover, .slick-next:hover {
+  color: #fff; /* White on hover for contrast */
+}
+
+
 .select-scent-title {
-  font-size: 1rem; /* Decrease the font size */
-  font-family: 'Playfair Display', serif; /* Elegant serif font */
-  color: #333; /* Classy dark color */
-  margin-bottom: 10px; /* Add some spacing below */
+  font-size: 1rem;
+  /* Decrease the font size */
+  font-family: 'Playfair Display', serif;
+  /* Elegant serif font */
+  color: #333;
+  /* Classy dark color */
+  margin-bottom: 10px;
+  /* Add some spacing below */
 }
+
 .scent-checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;  /* Adjust the gap between items */
+  gap: 10px;
+  /* Adjust the gap between items */
 }
 
 /*navbar fixed*/
 /* Sticky Navbar */
+/* Navbar container */
 .navbar {
-  position: sticky;  /* This makes the navbar sticky */
-  top: 0;            /* Keep it at the top */
-  width: 100%;       /* Ensure full width */
+  display: flex;
+  /* Use Flexbox */
+  justify-content: space-between;
+  /* Space out logo and icons */
+  align-items: center;
+  /* Vertically center items */
+  padding: 0 20px;
+  /* Remove vertical padding, keep horizontal padding */
   background-color: white;
-  border-bottom: 1px solid black;
-  z-index: 10;       /* Ensure it's above other content */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+  /* Background color */
+  border-bottom: 1.5px solid black;
+  /* Border at the bottom */
+  position: sticky;
+  /* Make the navbar sticky */
+  top: 0;
+  /* Stick to the top */
+  z-index: 10;
+  /* Ensure it stays above other elements */
+  height: 100px;
+  /* Set a height matching the logo */
+  box-sizing: border-box;
+  /* Include padding and border in height calculation */
 }
+
+/* Logo container */
+.logo {
+  flex-shrink: 0;
+  /* Prevent shrinking of the logo */
+  display: flex;
+  /* Use Flexbox to align logo */
+  align-items: center;
+  /* Center the logo vertically */
+  height: 100%;
+  /* Match the navbar height */
+}
+
+.logo-image {
+  height: 140px;
+  /* Set the specified height */
+  width: 150px;
+  /* Set the specified width */
+  display: block;
+  /* Remove inline alignment issues */
+}
+
+/* Menu container for icons */
+.menu-icons {
+  display: flex;
+  gap: 20px;
+  /* Space between icons */
+  background: none;
+  /* Remove background of Ant Design menu */
+  border: none;
+  /* Remove border of Ant Design menu */
+  margin: 0;
+  /* Remove any default margin */
+  padding: 0;
+  /* Remove any default padding */
+  align-items: center;
+  /* Vertically center icons */
+  height: 100%;
+  /* Match the navbar height */
+}
+
+
 
 /* Footer.css */
 .footer {
-  background-color:black;
+  background-color: black;
   color: #fff;
   padding: 10px 0;
   text-align: center;
@@ -267,6 +380,5 @@ body {
 }
 
 .footer-socials a:hover {
-  color:  #c5a880; /* Change this to your desired hover color */
-}
-
+  color: #c5a880;
+  /* Change this to your desired hover color */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext,useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"; // Import BrowserRouter
 import ListOfProducts from "./Components/UserUI/ListOfProducts";
 import Home from "./Components/UserUI/Home"; // Import the new Home component
@@ -7,6 +7,11 @@ import ProductDetails from "./Components/UserUI/ProductDetails"; // Import produ
 import AdminLayout from "./Components/AdminUI/Layouts/AdminLayout";
 import Products from "./Pages/Products";
 import Orders from "./Pages/Orders";
+import Bag from "./Components/UserUI/Bag";
+import AddProductForm from "./Components/AdminUI/AddProductForm";  // Form component for adding product (create this component)
+
+
+export const ProductContext = createContext();
 
 const App = () => {
   const addToBag = (id) => {
@@ -14,10 +19,19 @@ const App = () => {
   };
   // Manage products with useState
   const [product, setProducts] = useState(products);
+  const [bagItems, setBagItems] = useState([
+    { name: "Perfume A", quantity: 2, price: 50 },
+    { name: "Perfume B", quantity: 1, price: 30 },
+  ]);
+  const value = {
+    product,
+    addToBag,
+  };
 
   return (
     <div>
     <BrowserRouter>
+    <ProductContext.Provider value={value}>
       <Routes>
         {/* Route for the homepage */}
         <Route path="/" element={<Home products={product} />} />
@@ -27,9 +41,6 @@ const App = () => {
           path="/products"
           element={
             <ListOfProducts
-              products={product} // Pass products state
-              addToBag={(id) => console.log(`Added product with ID ${id} to the bag`)}
-              showDetails={(id) => console.log(`Show details for product with ID ${id}`)}
             />
           }
         />
@@ -37,11 +48,15 @@ const App = () => {
           path="/products/:id"
           element={<ProductDetails products={product} addToBag={addToBag} />}
         />
-         <Route path="/admin" element={<AdminLayout />}/>
-        <Route path="/admin/orders" element={<Orders />} />
-        <Route path="/admin/products" element={<Products />} />
-        
-      </Routes>
+        <Route path="/Bag" element={<Bag items={bagItems}/>} />
+        <Route path="/admin" element={<AdminLayout />}>
+        <Route path="orders" element={<Orders />} />
+        <Route path="products" element={<Products />} />
+        <Route path="/admin/add-product" element={<AddProductForm />} /> {/* Route for the Add Product Form */}
+
+      </Route>
+    </Routes>
+    </ProductContext.Provider>
     </BrowserRouter>
     </div>
   );

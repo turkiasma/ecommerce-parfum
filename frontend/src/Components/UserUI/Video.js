@@ -14,16 +14,17 @@ const Video = () => {
           marginBottom: "20px",
         }}
       >
-        <h2
+           {/* Logo Image */}
+           <img
+          src="/assets/logos.png" // Replace with the correct path to your logo
+          alt="Logo"
           style={{
-            fontSize: "2.5rem",
-            fontWeight: "bold",
-            marginBottom: "10px",
+            height: "160px", // Adjust the height of the logo
+            width: "340px", // Maintain aspect ratio
           }}
-        >
-          AURA
-        </h2>
-        <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>
+        />
+        <p style={{ fontSize: "1.5rem", lineHeight: "1.6"
+ }}>
           AURA was built to immerse you in a world of luxury and allure,
           offering a seamless journey to explore the finest perfumes that embody
           elegance and sophistication.
@@ -45,6 +46,7 @@ const Video = () => {
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
           <video
             autoPlay
+            muted
             loop
             playsInline
             style={{

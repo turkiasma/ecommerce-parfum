@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Box } from "@mui/material";
+import { AppBar, Toolbar} from "@mui/material";
 import FilterDrawer from "./FilterDrawer";
 
 const FilterAppBar = () => {

@@ -34,6 +34,7 @@ const CardItem = ({ perfume, addToBag, showDetails }) => {
         <Button
           type="primary"
           icon={<BsBag />}
+          style={{backgroundColor: "#d4af37",color:"black"}}
           onClick={() => addToBag(perfume.id)}
         >
           Add to Bag

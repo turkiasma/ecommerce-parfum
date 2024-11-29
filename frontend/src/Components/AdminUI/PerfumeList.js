@@ -14,55 +14,66 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const PerfumeList = ({ perfumes, onEdit, onDelete, onAddProduct }) => (
-  <Box>
-    <TableContainer
-      component={Paper}
-      style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
-    >
-      <Table sx={{ minWidth: 650 }} aria-label="perfume table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Perfume Name</TableCell>
-            <TableCell align="left">Price</TableCell>
-            <TableCell align="left">Actions</TableCell>
-            <TableCell align="left">Quantity</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {perfumes.map((perfume) => (
-            <TableRow
-              key={perfume.id}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell>{perfume.name}</TableCell>
-              <TableCell align="left">${perfume.price}</TableCell>
-              <TableCell align="left">
-                <IconButton onClick={() => onEdit(perfume.id)}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton onClick={() => onDelete(perfume.id)}>
-                  <DeleteIcon />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    {/* Add Product Button */}
-    <Box sx={{ marginTop: 2, textAlign: "right" }}>
-      <Button
-        variant="contained"
-        color="primary"
-        startIcon={<AddIcon />}
-        onClick={onAddProduct}
-      >
-        Add Product
-      </Button>
-    </Box>
-  </Box>
-);
-
-export default PerfumeList;
+// PerfumeList Component
+const PerfumeList = ({ perfumes, onEdit, onDelete, onAddProduct }) => {
+    const navigate = useNavigate(); // Initialize useNavigate hook
+  
+    const handleAddProduct = () => {
+      // Navigate to the add product form
+      navigate("/admin/add-product");
+    };
+  
+    return (
+      <Box>
+        <TableContainer
+          component={Paper}
+          style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
+        >
+          <Table sx={{ minWidth: 650 }} aria-label="perfume table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Perfume Name</TableCell>
+                <TableCell align="left">Price</TableCell>
+                <TableCell align="left">Actions</TableCell>
+                <TableCell align="left">Quantity</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {perfumes.map((perfume) => (
+                <TableRow
+                  key={perfume.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>{perfume.name}</TableCell>
+                  <TableCell align="left">${perfume.price}</TableCell>
+                  <TableCell align="left">
+                    <IconButton onClick={() => onEdit(perfume.id)}>
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton onClick={() => onDelete(perfume.id)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {/* Add Product Button */}
+        <Box sx={{ marginTop: 2, textAlign: "right" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddIcon />}
+            onClick={onAddProduct} // Use the passed function
+          >
+            Add Product
+          </Button>
+        </Box>
+      </Box>
+    );
+  };
+  
+  export default PerfumeList;

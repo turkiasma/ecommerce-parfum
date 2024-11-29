@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import PerfumeList from "../Components/AdminUI/PerfumeList";
-import { dummyPerfumes } from "../utils/dummyData";
+import PerfumeList from "../Components/AdminUI/PerfumeList"; // Adjust the import path
+import { dummyPerfumes } from "../Utils/DummyData"; // Adjust the import path
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 
 const Products = () => {
   const [perfumes, setPerfumes] = useState(dummyPerfumes);
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
-  // Handles adding a new product (console log for now)
-  const handleAdd = () => console.log("Add Product");
+  // Handles adding a new product (navigate to add product page)
+  const handleAdd = () => {
+    navigate("/admin/add-product"); // This will navigate to the add product page
+  };
 
   const handleEdit = (id) => console.log(`Edit Product ${id}`);
 

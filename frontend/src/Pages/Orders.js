@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box } from "@mui/material";
 
 import OrderList from "../Components/AdminUI/OrderList";
-import { dummyOrders } from "../utils/dummyData";
+import { dummyOrders } from "../Utils/DummyData";
 
 const Orders = () => {
   const [orders, setOrders] = useState(dummyOrders);
