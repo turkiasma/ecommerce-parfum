@@ -18,11 +18,7 @@ const productSchema = new Schema({
     type: String,
     required: true, // Example: "100ml"
   },
-  quantity: {
-    type: Number,
-    required: true,
-    default: 0, // Total stock available
-  },
+
   scent: {
     type: String,
     enum: ["fruity", "floral", "woody"],
