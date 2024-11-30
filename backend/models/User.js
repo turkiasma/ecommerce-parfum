@@ -11,10 +11,6 @@ const userSchema = new Schema({
     required: true,
     unique: true, // Ensure the email is unique
   },
-  age: {
-    type: String,
-    required: true,
-  },
   password: {
     type: String,
     required: true, // Password is required for authentication
