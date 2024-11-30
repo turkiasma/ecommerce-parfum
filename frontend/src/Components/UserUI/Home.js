@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useContext } from "react-router-dom";
 import { Layout } from "antd";
 import Navbar from "./Navbar";
 import FilterAppBar from "./FilterAppBar";
@@ -12,7 +12,7 @@ import '../../App.css';
 
 const { Content } = Layout;
 
-const Home = ({ products }) => {
+const Home = () => {
   const navigate = useNavigate();
 
   const handleDisplayAllProducts = () => {
@@ -40,11 +40,8 @@ const Home = ({ products }) => {
       </Layout>
 
       {/* Promotions Section */}
-      <Promotions
-        products={products}
-        addToBag={(id) => console.log(`Added product with ID ${id} to the bag`)}
-        showDetails={false} // Ensure no extra details are shown
-      />
+      <Promotions/> 
+      
       {/* "View All" Button */}
       <div style={{ textAlign: "center", margin: "20px" }}>
         <button

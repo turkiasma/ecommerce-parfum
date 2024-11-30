@@ -9,6 +9,7 @@ export const products = [
       qte: 0,
       promotion: true,
       image: "/assets/floral.jpg",
+      stock:5,
     },
     {
       id: 1,
@@ -20,6 +21,7 @@ export const products = [
       qte: 0,
       promotion: false,
       image: "/assets/floral2.jpg",
+      stock:5,
     },
     {
       id: 2,
@@ -31,6 +33,7 @@ export const products = [
       qte: 0,
       promotion: true,
       image: "/assets/fruity.jpg",
+      stock:5,
     },
     {
       id: 3,
@@ -42,6 +45,7 @@ export const products = [
       qte: 0,
       promotion: false,
       image: "/assets/woody.jpg",
+      stock:5,
     },
     {
       id: 4,
@@ -53,5 +57,6 @@ export const products = [
       qte: 0,
       promotion: true,
       image: "/assets/floral4.jpg",
+      stock:5,
     },
   ];

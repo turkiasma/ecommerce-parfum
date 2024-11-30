@@ -15,21 +15,21 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-const Bag = ({ initialItems = [] }) => {
-  const [items, setItems] = useState(initialItems);
+const Bag = ({ initialItems }) => { // Destructure initialItems
+  const [items, setItems] = useState(initialItems || []); // Ensure it's initialized as an array
 
   // Function to handle quantity increment
   const handleIncreaseQuantity = (index) => {
     const updatedItems = [...items];
-    updatedItems[index].quantity += 1;
+    updatedItems[index].qte += 1;
     setItems(updatedItems);
   };
 
   // Function to handle quantity decrement
   const handleDecreaseQuantity = (index) => {
     const updatedItems = [...items];
-    if (updatedItems[index].quantity > 1) {
-      updatedItems[index].quantity -= 1;
+    if (updatedItems[index].qte > 1) {
+      updatedItems[index].qte -= 1;
       setItems(updatedItems);
     }
   };
@@ -45,7 +45,7 @@ const Bag = ({ initialItems = [] }) => {
     setItems([]);
   };
 
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = items.reduce((sum, item) => sum + item.price * item.qte, 0); // Fix quantity here
 
   return (
     <div>
@@ -72,13 +72,13 @@ const Bag = ({ initialItems = [] }) => {
                       <IconButton onClick={() => handleDecreaseQuantity(index)}>
                         <RemoveIcon />
                       </IconButton>
-                      {item.quantity}
+                      {item.qte}
                       <IconButton onClick={() => handleIncreaseQuantity(index)}>
                         <AddIcon />
                       </IconButton>
                     </div>
                   </TableCell>
-                  <TableCell>${(item.price * item.quantity).toFixed(2)}</TableCell>
+                  <TableCell>${(item.price * item.qte).toFixed(2)}</TableCell>
                   <TableCell>
                     <IconButton onClick={() => handleDeleteItem(index)}>
                       <DeleteIcon />
@@ -120,5 +120,4 @@ const Bag = ({ initialItems = [] }) => {
     </div>
   );
 };
-
 export default Bag;
