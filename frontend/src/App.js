@@ -9,6 +9,11 @@ import Products from "./Pages/Products";
 import Orders from "./Pages/Orders";
 import Bag from "./Components/UserUI/Bag";
 import AddProductForm from "./Components/AdminUI/AddProductForm";
+import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Optional if Bootstrap classes are used
+
 
 export const ProductContext = createContext();
 
@@ -67,6 +72,8 @@ const App = () => {
               element={<ProductDetails products={product} addToBag={addToBag} />}
             />
            <Route path="/Bag" element={<Bag initialItems={bagItems} />} />
+           <Route path="/SignUp" element={<SignUp />} />
+           <Route path="/Login" element={<Login />} />
             <Route path="/admin" element={<AdminLayout />}>
               <Route path="orders" element={<Orders />} />
               <Route path="products" element={<Products />} />

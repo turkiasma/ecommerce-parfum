@@ -24,11 +24,18 @@ const Navbar = () => {
       ),
       label: null,
     },
+
     {
       key: "3",
-      icon: <UserOutlined style={{ fontSize: "24px", color: "black" }} />,
+      icon: (
+        <Link to="/Login">
+          <UserOutlined style={{ fontSize: "24px", color: "black" }} />
+        </Link>
+      ),
       label: null,
-    },
+    }
+
+
   ];
 
   return (
