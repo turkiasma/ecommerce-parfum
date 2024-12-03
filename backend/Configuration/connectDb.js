@@ -12,3 +12,4 @@ console.error('Connection to MongoDB Atlas failed:', error);
 } 
 }; 
 module.exports = connectDb; 
+

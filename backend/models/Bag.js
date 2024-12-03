@@ -29,4 +29,4 @@ const bagSchema = new Schema({
 });
 
 const Bag = mongoose.model("Bag", bagSchema);
-module.exports = Bag;
+module.exports = Bag;                                               

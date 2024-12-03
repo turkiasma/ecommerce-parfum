@@ -1,19 +1,39 @@
-const express = require("express"); 
-const userRoute = require("./Routes/userRoute"); 
-const connectDb=require('./Configuration/connectDb') 
-var cors = require('cors') 
-const app = express(); 
-const dotenv = require("dotenv"); 
-dotenv.config(); 
+const express = require("express");
+const userRoute = require("./Routes/userRoute");
+const connectDb = require('./Configuration/connectDb');
+const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv");
+const cors = require("cors"); // Import cors
+
+dotenv.config();
+
+const app = express();
 const port = process.env.PORT;
-connectDb(); 
-app.use(cors()) 
-app.listen(port, (er) => { 
-if (er) { 
-console.log(er); 
-} else { 
-console.log(`server is running on port ${port}`); 
-} 
-}); 
-app.use(express.json()) 
+
+// Connect to the database
+connectDb();
+
+// Use CORS middleware
+app.use(cors({
+  origin: "http://localhost:3000", // Allow requests from the frontend
+  methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods
+  credentials: true // Allow cookies to be sent
+}));
+
+// Use cookie-parser middleware to parse cookies
+app.use(cookieParser());
+
+// Middleware to parse JSON requests
+app.use(express.json());
+
+// Routes
 app.use("/api", userRoute);
+
+// Start the server
+app.listen(port, (error) => {
+  if (error) {
+    console.log("Server Failed");
+  } else {
+    console.log(`Server is running on port ${port}`);
+  }
+});

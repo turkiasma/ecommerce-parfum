@@ -16,7 +16,7 @@ const orderSchema = new Schema({
       },
       quantity: {
         type: Number,
-        required: true,
+        required: true,//qty per product
       },
     },
   ],
