@@ -54,19 +54,19 @@ const AdminLayout = () => {
         >
           <Toolbar />
           <List>
-            <ListItem button component={Link} to="/admin">
+            <ListItem button={true} component={Link} to="/admin">
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem button component={Link} to="/admin/orders">
+            <ListItem button={true} component={Link} to="/admin/orders">
               <ListItemIcon>
                 <ShoppingCartIcon />
               </ListItemIcon>
               <ListItemText primary="Orders" />
             </ListItem>
-            <ListItem button component={Link} to="/admin/products">
+            <ListItem button={true} component={Link} to="/admin/products">
               <ListItemIcon>
                 <ShoppingCartIcon />
               </ListItemIcon>

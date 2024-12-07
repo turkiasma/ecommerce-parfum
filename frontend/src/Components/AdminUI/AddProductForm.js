@@ -1,29 +1,66 @@
 import React, { useState } from 'react';
-import { TextField, Button, MenuItem, Select, InputLabel, FormControl, FormHelperText, Box, Typography, Stack } from '@mui/material';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import {
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  FormHelperText,
+  Box,
+  Typography,
+  Stack,
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const AddProductForm = () => {
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
   const [productData, setProductData] = useState({
     name: '',
     price: '',
-    scent: '',  // Updated scent field
+    scent: '',
     description: '',
-    size: '',  // Updated size field
-    qte: '',
+    size: '',
     promotion: false,
-    image: '',
+    stock: '',
   });
+  const [image, setImage] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductData({ ...productData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]); // Capture the uploaded file
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Product Data Submitted:", productData);
-    navigate("/admin/products"); // Use navigate to redirect after submission
+    const formData = new FormData();
+    formData.append('name', productData.name);
+    formData.append('price', productData.price);
+    formData.append('scent', productData.scent);
+    formData.append('description', productData.description);
+    formData.append('size', productData.size);
+    formData.append('promotion', productData.promotion);
+    formData.append('stock', productData.stock);
+    formData.append('file', image);
+
+    try {
+      const response = await axios.post('http://localhost:9002/api/products', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      console.log('Product created:', response.data);
+      alert(`Product created successfully!`);
+      navigate('/admin/products'); // Redirect after success
+    } catch (error) {
+      console.error('Error while adding product:', error);
+      alert(`Failed to create product. Please try again.\nError: ${error.response?.data?.message || error.message}`);
+    }
   };
 
   return (
@@ -31,7 +68,7 @@ const AddProductForm = () => {
       <Typography variant="h4" gutterBottom>
         Add New Product
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <Stack spacing={3}>
           <TextField
             label="Product Name"
@@ -50,81 +87,62 @@ const AddProductForm = () => {
             onChange={handleChange}
             required
           />
-          
-          {/* Scent Select */}
-          <FormControl fullWidth>
-            <InputLabel>Scent</InputLabel>
-            <Select
-              name="scent"
-              value={productData.scent}
-              onChange={handleChange}
-              required
-            >
-              <MenuItem value="Woody">Woody</MenuItem>
-              <MenuItem value="Floral">Floral</MenuItem>
-              <MenuItem value="Fruity">Fruity</MenuItem>
-            </Select>
-            <FormHelperText>Select the scent of the product</FormHelperText>
-          </FormControl>
-
-          {/* Size Select */}
-          <FormControl fullWidth>
-            <InputLabel>Size</InputLabel>
-            <Select
-              name="size"
-              value={productData.size}
-              onChange={handleChange}
-              required
-            >
-              <MenuItem value="100">100</MenuItem>
-              <MenuItem value="75">75</MenuItem>
-              <MenuItem value="50">50</MenuItem>
-            </Select>
-            <FormHelperText>Select the size of the product</FormHelperText>
-          </FormControl>
-
+          <TextField
+            label="Scent"
+            name="scent"
+            fullWidth
+            value={productData.scent}
+            onChange={handleChange}
+          />
           <TextField
             label="Description"
             name="description"
             fullWidth
-            value={productData.description}
-            onChange={handleChange}
-            required
             multiline
             rows={4}
+            value={productData.description}
+            onChange={handleChange}
           />
           <TextField
-            label="Stock"
-            name="qte"
-            type="number"
+            label="Size"
+            name="size"
             fullWidth
-            value={productData.qte}
+            value={productData.size}
             onChange={handleChange}
-            required
           />
-          <FormControl fullWidth>
-            <InputLabel>Promotion</InputLabel>
+          <FormControl>
+            <InputLabel id="promotion-label">Promotion</InputLabel>
             <Select
+              labelId="promotion-label"
               name="promotion"
               value={productData.promotion}
               onChange={handleChange}
-              required
             >
               <MenuItem value={true}>Yes</MenuItem>
               <MenuItem value={false}>No</MenuItem>
             </Select>
-            <FormHelperText>Is this product on promotion?</FormHelperText>
+            <FormHelperText>Select promotion status</FormHelperText>
           </FormControl>
           <TextField
-            label="Image URL"
-            name="image"
+            label="Stock"
+            name="stock"
+            type="number"
             fullWidth
-            value={productData.image}
+            value={productData.stock}
             onChange={handleChange}
+          />
+
+          {/* Updated Image Upload */}
+          <Typography variant="body1">Upload Image</Typography>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
             required
           />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Add Product
+
+          <Button type="submit" variant="contained" color="primary">
+            Submit
           </Button>
         </Stack>
       </form>

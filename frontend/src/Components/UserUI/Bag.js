@@ -10,22 +10,40 @@ import {
   Typography,
   IconButton,
   Button,
+  Dialog,
+  DialogTitle,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
 
-const Bag = ({ initialItems }) => { // Destructure initialItems
-  const [items, setItems] = useState(initialItems || []); // Ensure it's initialized as an array
+const Bag = ({ initialItems }) => {
+  const [items, setItems] = useState(initialItems || []);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
 
-  // Function to handle quantity increment
+  // Handle dialog open/close
+  const handleDialogOpen = () => setDialogOpen(true);
+  const handleDialogClose = () => setDialogOpen(false);
+
+  // Handle payment selection
+  const handlePaymentSelect = (event) => {
+    setSelectedPaymentMethod(event.target.value);
+  };
+
   const handleIncreaseQuantity = (index) => {
     const updatedItems = [...items];
     updatedItems[index].qte += 1;
     setItems(updatedItems);
   };
 
-  // Function to handle quantity decrement
   const handleDecreaseQuantity = (index) => {
     const updatedItems = [...items];
     if (updatedItems[index].qte > 1) {
@@ -34,18 +52,16 @@ const Bag = ({ initialItems }) => { // Destructure initialItems
     }
   };
 
-  // Function to handle item deletion
   const handleDeleteItem = (index) => {
     const updatedItems = items.filter((_, i) => i !== index);
     setItems(updatedItems);
   };
 
-  // Function to handle cancel button
   const handleCancel = () => {
     setItems([]);
   };
 
-  const total = items.reduce((sum, item) => sum + item.price * item.qte, 0); // Fix quantity here
+  const total = items.reduce((sum, item) => sum + item.price * item.qte, 0);
 
   return (
     <div>
@@ -60,7 +76,7 @@ const Bag = ({ initialItems }) => { // Destructure initialItems
                 <TableCell>Products</TableCell>
                 <TableCell>Quantity</TableCell>
                 <TableCell>Price</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell>Remove</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -112,12 +128,59 @@ const Bag = ({ initialItems }) => { // Destructure initialItems
           >
             Cancel
           </Button>
-          <Button variant="contained" color="primary">
-            Confirm
+          <Button variant="contained" color="primary" onClick={handleDialogOpen}>
+            Checkout
           </Button>
         </div>
       )}
+
+      {/* Payment Method Dialog */}
+      <Dialog open={dialogOpen} onClose={handleDialogClose}>
+        <DialogTitle>Payment Method</DialogTitle>
+        <RadioGroup value={selectedPaymentMethod} onChange={handlePaymentSelect}>
+          <ListItem>
+            <FormControlLabel
+              value="PayPal"
+              control={<Radio />}
+              label={
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <AccountBalanceWalletIcon style={{ marginRight: 8 }} />
+                  <ListItemText primary="PayPal" />
+                </div>
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <FormControlLabel
+              value="CreditCard"
+              control={<Radio />}
+              label={
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <CreditCardIcon style={{ marginRight: 8 }} />
+                  <ListItemText primary="Credit or Debit Card" />
+                </div>
+              }
+            />
+          </ListItem>
+        </RadioGroup>
+        <div style={{ display: "flex", justifyContent: "flex-end", margin: "16px" }}>
+          <Button onClick={handleDialogClose} color="secondary" variant="outlined">
+            Cancel
+          </Button>
+          <Button
+            onClick={() => {
+              handleDialogClose();
+            }}
+            color="primary"
+            variant="contained"
+            style={{ marginLeft: "8px" }}
+          >
+            Confirm
+          </Button>
+        </div>
+      </Dialog>
     </div>
   );
 };
+
 export default Bag;
