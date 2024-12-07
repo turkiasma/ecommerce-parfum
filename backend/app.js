@@ -1,5 +1,6 @@
 const express = require("express");
 const userRoute = require("./Routes/userRoute");
+const productRoute = require("./Routes/productRoute");
 const connectDb = require('./Configuration/connectDb');
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
@@ -27,7 +28,13 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Routes
+
 app.use("/api", userRoute);
+// Serve uploaded files statically
+app.use("/uploads", express.static("uploads"));
+
+// Use product routes
+app.use("/api", productRoute);
 
 // Start the server
 app.listen(port, (error) => {
