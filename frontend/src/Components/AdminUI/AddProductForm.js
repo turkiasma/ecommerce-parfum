@@ -1,18 +1,7 @@
 import React, { useState } from 'react';
-import {
-  TextField,
-  Button,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
-  FormHelperText,
-  Box,
-  Typography,
-  Stack,
-} from '@mui/material';
+import { TextField, Button, MenuItem, Select, InputLabel, FormControl, FormHelperText, Box, Typography, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { createProduct } from '../../services/productService';
 
 const AddProductForm = () => {
   const navigate = useNavigate();
@@ -20,7 +9,7 @@ const AddProductForm = () => {
     name: '',
     price: '',
     scent: '',
-    description: '',
+    description: '', 
     size: '',
     promotion: false,
     stock: '',
@@ -38,28 +27,13 @@ const AddProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', productData.name);
-    formData.append('price', productData.price);
-    formData.append('scent', productData.scent);
-    formData.append('description', productData.description);
-    formData.append('size', productData.size);
-    formData.append('promotion', productData.promotion);
-    formData.append('stock', productData.stock);
-    formData.append('file', image);
-
     try {
-      const response = await axios.post('http://localhost:9002/api/products', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('Product created:', response.data);
+      await createProduct(productData, image); // Call createProduct from productService
       alert(`Product created successfully!`);
       navigate('/admin/products'); // Redirect after success
     } catch (error) {
       console.error('Error while adding product:', error);
-      alert(`Failed to create product. Please try again.\nError: ${error.response?.data?.message || error.message}`);
+      alert(`Failed to create product. Please try again.\nError: ${error.message}`);
     }
   };
 
@@ -131,16 +105,9 @@ const AddProductForm = () => {
             value={productData.stock}
             onChange={handleChange}
           />
-
-          {/* Updated Image Upload */}
+          {/* Image upload */}
           <Typography variant="body1">Upload Image</Typography>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            required
-          />
-
+          <input type="file" accept="image/*" onChange={handleImageChange} required />
           <Button type="submit" variant="contained" color="primary">
             Submit
           </Button>
@@ -151,3 +118,4 @@ const AddProductForm = () => {
 };
 
 export default AddProductForm;
+

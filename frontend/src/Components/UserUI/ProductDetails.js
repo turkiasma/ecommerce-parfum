@@ -9,7 +9,7 @@ import "../../App.css";
 
 const ProductDetails = ({ products, addToBag }) => {
   const { id } = useParams();
-  const product = products.find((perfume) => perfume.id === Number(id));
+  const product = products.find((perfume) => perfume._id === Number(id));
 
   const [showCard, setShowCard] = useState(false);
 

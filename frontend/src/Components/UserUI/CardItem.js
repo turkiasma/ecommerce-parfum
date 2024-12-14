@@ -8,9 +8,9 @@ const { Meta } = Card;
 
 const CardItem = ({ perfume, addToBag, showDetails }) => {
   const navigate = useNavigate();
-
+  console.log(perfume.image); 
   const handleShowDetails = () => {
-    navigate(`/products/${perfume.id}`);
+    navigate(`/products/${perfume._id}`);
   };
 
   return (
@@ -23,10 +23,11 @@ const CardItem = ({ perfume, addToBag, showDetails }) => {
       cover={
         <img
           alt={perfume.name}
-          src={perfume.image}
+          src={`http://localhost:9002/${perfume.image}`}
           style={{
             height: "200px",
             objectFit: "cover",
+            
           }}
         />
       }
@@ -34,8 +35,8 @@ const CardItem = ({ perfume, addToBag, showDetails }) => {
         <Button
           type="primary"
           icon={<BsBag />}
-          style={{backgroundColor: "#d4af37",color:"black"}}
-          onClick={() => addToBag(perfume.id)}
+          style={{ backgroundColor: "#d4af37", color: "black" }}
+          onClick={() => addToBag(perfume._id)}
         >
           Add to Bag
         </Button>,

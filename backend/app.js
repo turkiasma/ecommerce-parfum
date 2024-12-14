@@ -31,7 +31,7 @@ app.use(express.json());
 
 app.use("/api", userRoute);
 // Serve uploaded files statically
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads")); 
 
 // Use product routes
 app.use("/api", productRoute);
