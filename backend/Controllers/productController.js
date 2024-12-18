@@ -1,16 +1,15 @@
 const Product = require("../models/Product");
 
-// Function to create a new product
 const postProduct = async (req, res) => {
   try {
-    const { name, price, size, scent, description, promotion, stock } = req.body;
+    const { name, price, size, scent, description, promotion, stock, image } = req.body;
 
-    // Ensure that a file was uploaded
-    if (!req.file) {
-      return res.status(400).json({ message: 'Image is required' });
+    // Ensure that an image URL is provided
+    if (!image) {
+      return res.status(400).json({ message: 'Image URL is required' });
     }
 
-    // Create a new product with the uploaded image
+    // Create a new product with the provided image URL
     const product = new Product({
       name,
       price,
@@ -19,7 +18,7 @@ const postProduct = async (req, res) => {
       description,
       promotion,
       stock,
-      image: req.file.path.replace(/\\/g, "/")  // Normalize path  // Make sure you're using the correct file path
+      image  // Use 'image' instead of 'imageUrl'
     });
 
     // Save the product to the database
@@ -31,10 +30,11 @@ const postProduct = async (req, res) => {
   }
 };
 
+
 // Function to fetch all products
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find(); // Fetch all products
+    const products = await Product.find();  // Fetch all products
     res.status(200).json(products);  // Return the products as a JSON response
   } catch (error) {
     console.error('Error while fetching products:', error);
@@ -61,8 +61,38 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+// Function to update a product
+const putProduct = async (req, res) => {
+  try {
+    const { id } = req.params; // Get the product ID from the URL parameters
+    const { name, price, size, scent, description, promotion, stock, image } = req.body; // Get the updated product details from the body
+
+    // Check if the image URL is provided
+    if (!image) {
+      return res.status(400).json({ message: 'Image URL is required' });
+    }
+
+    // Find the product by ID and update it with the new values
+    const product = await Product.findByIdAndUpdate(
+      id,
+      { name, price, size, scent, description, promotion, stock, image },
+      { new: true } // Ensure the updated product is returned
+    );
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' }); // If the product is not found
+    }
+
+    res.status(200).json(product); // Return the updated product
+  } catch (error) {
+    console.error('Error while updating product:', error);
+    res.status(500).json({ message: 'Error while updating product' });
+  }
+};
+
 module.exports = {
   postProduct,
   getAllProducts,
   deleteProduct,
+  putProduct, 
 };

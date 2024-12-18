@@ -1,6 +1,8 @@
 const express = require("express");
 const userRoute = require("./Routes/userRoute");
 const productRoute = require("./Routes/productRoute");
+const bagRoute = require("./Routes/bagRoute");
+const orderRoute=require("./Routes/orderRoute")
 const connectDb = require('./Configuration/connectDb');
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
@@ -31,10 +33,12 @@ app.use(express.json());
 
 app.use("/api", userRoute);
 // Serve uploaded files statically
-app.use("/uploads", express.static("uploads")); 
+
 
 // Use product routes
 app.use("/api", productRoute);
+app.use("/api/bag", bagRoute);// Updated to prefix bag routes with /api/bag
+app.use("/api/order",orderRoute );
 
 // Start the server
 app.listen(port, (error) => {

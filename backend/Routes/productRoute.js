@@ -1,14 +1,19 @@
-const upload = require("../multerConfiguration");
 const express = require("express");
 const productRouter = express.Router();
- //Correct path to multer configuration
+const isAuth = require("../middleware/isAuth");
+const isAutho = require("../middleware/isAutho");
 const productController = require("../Controllers/productController");
 
-// Route to create a product with image upload
+// Route to get all products (accessible to all users)
 productRouter.get("/products", productController.getAllProducts);
-productRouter.post("/products", upload.single("file"), productController.postProduct);
 
-// Route to delete a product by ID
-productRouter.delete("/products/:id", productController.deleteProduct);
+// Route to create a product (admin only)
+productRouter.post("/products", isAuth, isAutho(['admin']), productController.postProduct);
+
+// Route to delete a product by ID (admin only)
+productRouter.delete("/products/:id", isAuth, isAutho(['admin']), productController.deleteProduct);
+
+// Route to update a product by ID (admin only)
+productRouter.put("/products/:id", isAuth, isAutho(['admin']), productController.putProduct);
 
 module.exports = productRouter;

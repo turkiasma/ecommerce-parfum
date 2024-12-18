@@ -16,7 +16,9 @@ userRoute.get("/users/:id", isAuth, isAutho(["user"]), getOneUser);
 userRoute.post("/users", postUser);
 userRoute.put("/users/:id", putUser);
 userRoute.delete("/users/:id", isAuth, isAutho(["admin"]), deleteUser);
-userRoute.post("/signIn", signIn), userRoute.post("/logout", logout);
+userRoute.post("/signIn", signIn);
+userRoute.post("/logout", logout);
+
 
 module.exports = userRoute;
 
