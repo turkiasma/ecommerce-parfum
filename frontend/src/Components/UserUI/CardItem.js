@@ -3,12 +3,14 @@ import { InfoCircleOutlined } from "@ant-design/icons";
 import { BsBag } from "react-icons/bs";
 import { Card, Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useBag } from "../../context/BagContext"; // Import the BagContext
 
 const { Meta } = Card;
 
-const CardItem = ({ perfume, addToBag, showDetails }) => {
+const CardItem = ({ perfume, showDetails }) => {
   const navigate = useNavigate();
-  console.log(perfume.image); 
+  const { addToBag } = useBag(); // Use addToBag directly from the context
+
   const handleShowDetails = () => {
     navigate(`/products/${perfume._id}`);
   };
@@ -23,11 +25,10 @@ const CardItem = ({ perfume, addToBag, showDetails }) => {
       cover={
         <img
           alt={perfume.name}
-          src={`http://localhost:9002/${perfume.image}`}
+          src={perfume.image}
           style={{
             height: "200px",
             objectFit: "cover",
-            
           }}
         />
       }
@@ -36,7 +37,7 @@ const CardItem = ({ perfume, addToBag, showDetails }) => {
           type="primary"
           icon={<BsBag />}
           style={{ backgroundColor: "#d4af37", color: "black" }}
-          onClick={() => addToBag(perfume._id)}
+          onClick={() => addToBag(perfume._id)} // Call addToBag from the context
         >
           Add to Bag
         </Button>,

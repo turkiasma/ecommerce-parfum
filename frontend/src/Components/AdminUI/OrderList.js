@@ -11,20 +11,15 @@ import {
 } from "@mui/material";
 
 const makeStyle = (status) => {
-  if (status === "Approved") {
+  if (status === "confirmed") {
     return {
       background: "rgb(145 254 159 / 47%)",
       color: "green",
     };
-  } else if (status === "Pending") {
+  } else if (status === "pending") {
     return {
       background: "orange",
       color: "white",
-    };
-  } else if (status === "Rejected") {
-    return {
-      background: "#ffadad8f",
-      color: "red",
     };
   } else {
     return {
@@ -42,7 +37,7 @@ const OrderList = ({ orders, onUpdateStatus }) => (
     <Table sx={{ minWidth: 650 }} aria-label="order table">
       <TableHead>
         <TableRow>
-          <TableCell>Buyer ID</TableCell>
+          <TableCell>Buyer</TableCell>
           <TableCell align="left">Total</TableCell>
           <TableCell align="left">Status</TableCell>
           <TableCell align="left">Actions</TableCell>
@@ -61,13 +56,10 @@ const OrderList = ({ orders, onUpdateStatus }) => (
             </TableCell>
             <TableCell align="left">
               <Button
-                onClick={() => onUpdateStatus(order.id, "Approved")}
+                onClick={() => onUpdateStatus(order.id, "confirmed")}
                 style={{ marginRight: "10px" }}
               >
                 Approve
-              </Button>
-              <Button onClick={() => onUpdateStatus(order.id, "Rejected")}>
-                Reject
               </Button>
             </TableCell>
           </TableRow>

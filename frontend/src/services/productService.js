@@ -2,10 +2,12 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:9002/api/products';
 
-// Fetch all products
+// **Fetch all products**
 export const getProducts = async () => {
   try {
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(apiUrl, {
+      withCredentials: true, // Include cookies automatically
+    });
     return response.data;
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -13,37 +15,41 @@ export const getProducts = async () => {
   }
 };
 
-// Create a new product
-//multipart/form-data allows you to send both text (like product name, price, etc.) and binary data (the image) in one request
-export const createProduct = async (productData, image) => {
-  const formData = new FormData();
-  formData.append('name', productData.name);
-  formData.append('price', productData.price);
-  formData.append('scent', productData.scent);
-  formData.append('description', productData.description);
-  formData.append('size', productData.size);
-  formData.append('promotion', productData.promotion);
-  formData.append('stock', productData.stock);
-  formData.append('file', image);
-
+// **Create a new product**
+export const createProduct = async (productData) => {
   try {
-    const response = await axios.post(apiUrl, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
+    const response = await axios.post(apiUrl, productData, {
+      withCredentials: true, // Include cookies automatically
     });
     return response.data;
   } catch (error) {
-    console.error('Error creating product:', error);
+    console.error('Error creating product:', error.response?.data || error.message);
     throw error;
   }
 };
 
-// Delete a product
+// **Delete a product**
 export const deleteProduct = async (id) => {
   try {
-    const response = await axios.delete(`${apiUrl}/${id}`);
+    const response = await axios.delete(`${apiUrl}/${id}`, {
+      withCredentials: true, // Include cookies automatically
+    });
     return response.data;
   } catch (error) {
-    console.error('Error deleting product:', error);
+    console.error('Error deleting product:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
+// **Update a product**
+export const updateProduct = async (id, updatedProductData) => {
+  try {
+    const response = await axios.put(`${apiUrl}/${id}`, updatedProductData, {
+      withCredentials: true, // Include cookies automatically
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating product:', error.response?.data || error.message);
     throw error;
   }
 };

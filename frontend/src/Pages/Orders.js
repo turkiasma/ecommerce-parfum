@@ -1,17 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-
 import OrderList from "../Components/AdminUI/OrderList";
-import { dummyOrders } from "../Utils/DummyData";
+import { getAllOrders, updateOrderStatus } from "../services/orderService";
 
 const Orders = () => {
-  const [orders, setOrders] = useState(dummyOrders);
+  const [orders, setOrders] = useState([]); // Store fetched orders
 
-  const handleUpdateStatus = (id, status) => {
-    console.log(`Update order ${id} to ${status}`);
-    setOrders(
-      orders.map((order) => (order.id === id ? { ...order, status } : order))
-    );
+  // Fetch orders on component mount
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const data = await getAllOrders();
+        const formattedOrders = data.map((order) => ({
+          id: order._id,
+          buyerId: order.customerId.userName,
+          total: order.total,
+          status: order.status,
+        }));
+        setOrders(formattedOrders);
+      } catch (error) {
+        console.error("Failed to fetch orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  // Handle status update
+  const handleUpdateStatus = async (id, status) => {
+    try {
+      await updateOrderStatus(id, status);
+      setOrders(
+        orders.map((order) =>
+          order.id === id ? { ...order, status } : order
+        )
+      );
+    } catch (error) {
+      console.error("Failed to update order status:", error);
+    }
   };
 
   return (

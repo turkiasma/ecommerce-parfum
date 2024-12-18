@@ -4,74 +4,88 @@ import ListOfProducts from "./Components/UserUI/ListOfProducts";
 import Home from "./Components/UserUI/Home";
 import ProductDetails from "./Components/UserUI/ProductDetails";
 import AdminLayout from "./Components/AdminUI/Layouts/AdminLayout";
+import AdminDashboard from "./Components/AdminUI/AdminDashboard";
 import Products from "./Pages/Products";
 import Orders from "./Pages/Orders";
 import Bag from "./Components/UserUI/Bag";
 import AddProductForm from "./Components/AdminUI/AddProductForm";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
-import axios from "axios"; // Import Axios
+import PrivateRoute from "./Components/PrivateRoute";
+import axios from "axios";
+import { BagProvider } from "./context/BagContext";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Optional if Bootstrap classes are used
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const ProductContext = createContext();
 
 const App = () => {
-  const [product, setProducts] = useState([]); // Product state
+  const [product, setProducts] = useState([]); // State for products
   const [loading, setLoading] = useState(true); // Loading state
-  const [bagItems, setBagItems] = useState([]); // Bag state
+  const [filteredProducts, setFilteredProducts] = useState([]); // State for filtered products
 
-  // Centralized product fetching
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true); // Show loading skeletons while fetching
-        const response = await axios.get("http://localhost:9002/api/products"); // Replace with your backend API URL
-        setProducts(response.data); // Update the product state with fetched data
+        setLoading(true);
+        const response = await axios.get("http://localhost:9002/api/products");
+        setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
-        setLoading(false); // Always stop loading, even on error
+        setLoading(false);
       }
     };
 
     fetchProducts();
-  }, []); // Run once on mount
-
-  // Add to Bag Function
-  const addToBag = (id) => {
-    console.log(`Added product with ID ${id} to the bag`);
-
-    // Find the product in the main products state
-    const productToAdd = product.find((item) => item._id === id);
-    if (!productToAdd) return;
-
-    // Add logic for adding the product to the bag here
-  };
+  }, []);
 
   const value = {
     product,
-    loading, // Pass loading state to context
-    addToBag,
+    loading,
+    filteredProducts,
+    setFilteredProducts,
   };
 
   return (
     <div>
       <BrowserRouter>
         <ProductContext.Provider value={value}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ListOfProducts />} />
-            <Route path="/products/:id" element={<ProductDetails products={product} addToBag={addToBag} />} />
-            <Route path="/Bag" element={<Bag initialItems={bagItems} />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route path="orders" element={<Orders />} />
-              <Route path="products" element={<Products />} />
-              <Route path="/admin/add-product" element={<AddProductForm />} />
-            </Route>
-          </Routes>
+          <BagProvider>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<ListOfProducts />} />
+              <Route path="/products/:id" element={<ProductDetails />} />
+              <Route path="/SignUp" element={<SignUp />} />
+              <Route path="/Login" element={<Login />} />
+
+              {/* Protected Route: Bag (Only accessible to authenticated users with role 'user') */}
+              <Route
+                path="/Bag"
+                element={
+                  <PrivateRoute allowedRoles={['user']}>
+                    <Bag />
+                  </PrivateRoute>
+                }
+              />
+
+              {/* Admin Routes: Accessible only to 'admin' role */}
+              <Route
+                path="/admin"
+                element={
+                  <PrivateRoute allowedRoles={['admin']}>
+                    <AdminLayout />
+                  </PrivateRoute>
+                }
+              >
+                <Route index element={<AdminDashboard />} />
+                <Route path="orders" element={<Orders />} />
+                <Route path="products" element={<Products />} />
+                <Route path="add-product" element={<AddProductForm />} />
+              </Route>
+            </Routes>
+          </BagProvider>
         </ProductContext.Provider>
       </BrowserRouter>
     </div>
@@ -79,3 +93,5 @@ const App = () => {
 };
 
 export default App;
+
+

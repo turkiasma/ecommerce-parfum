@@ -16,10 +16,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 
-
 // PerfumeList Component
 const PerfumeList = ({ perfumes, onEdit, onDelete, onAddProduct }) => {
-   
   return (
     <Box>
       <TableContainer
@@ -53,8 +51,8 @@ const PerfumeList = ({ perfumes, onEdit, onDelete, onAddProduct }) => {
                   </Tooltip>
                 </TableCell>
                 <TableCell align="left">
-                  <IconButton onClick={() => onEdit(perfume._id)}>
-                    <EditIcon />
+                <IconButton onClick={() => onEdit(perfume)}>
+                <EditIcon />
                   </IconButton>
                   <IconButton onClick={() => onDelete(perfume._id)}>
                     <DeleteIcon />

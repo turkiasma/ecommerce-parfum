@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
-import { Skeleton, Box } from "@mui/material";
+import { Skeleton, Box, Typography } from "@mui/material";
 import CardItem from "./CardItem";
-import { ProductContext } from "../../App";
+import { ProductContext } from "../../App"; // Only fetch product-related data
+import { useBag } from "../../context/BagContext"; // Import useBag for Bag context
 
 const Promotions = () => {
-  const { product, loading, addToBag } = useContext(ProductContext);
+  const { product, loading } = useContext(ProductContext); // Fetch product-related data
+  const { addToBag } = useBag(); // Fetch addToBag from BagContext
+
   const promotionalProducts = product.filter((p) => p.promotion);
 
   return (
@@ -37,14 +40,20 @@ const Promotions = () => {
                 <Skeleton width="80%" height={20} />
               </Box>
             ))
-          : promotionalProducts.map((perfume) => (
-              <CardItem
-                key={perfume._id}
-                perfume={perfume}
-                addToBag={addToBag}
-                showDetails={false}
-              />
-            ))}
+          : promotionalProducts.length > 0 ? (
+              promotionalProducts.map((perfume) => (
+                <CardItem
+                  key={perfume._id}
+                  perfume={perfume}
+                  addToBag={addToBag}
+                  showDetails={false}
+                />
+              ))
+            ) : (
+              <Typography variant="h6" style={{ textAlign: "center" }}>
+                No promotions available.
+              </Typography>
+            )}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate,useContext } from "react-router-dom";
+import React,{ useContext }  from "react";
+import { useNavigate } from "react-router-dom";
 import { Layout } from "antd";
 import Navbar from "./Navbar";
 import FilterAppBar from "./FilterAppBar";
@@ -9,13 +9,16 @@ import Card from "./Card";
 import Footer from "./Footer";
 import Promotions from "./Promotions";
 import '../../App.css';
+import { ProductContext } from "../../App.js";
 
 const { Content } = Layout;
 
 const Home = () => {
+  const {setFilteredProducts} = useContext(ProductContext);
   const navigate = useNavigate();
 
   const handleDisplayAllProducts = () => {
+    setFilteredProducts([]);
     navigate("/products"); // Navigate to the /products route
   };
 
