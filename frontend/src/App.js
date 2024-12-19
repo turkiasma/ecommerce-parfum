@@ -12,8 +12,8 @@ import AddProductForm from "./Components/AdminUI/AddProductForm";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import PrivateRoute from "./Components/PrivateRoute";
-import axios from "axios";
 import { BagProvider } from "./context/BagContext";
+import { getProducts } from "./services/productService"; // Importing the getProducts function
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,8 +28,8 @@ const App = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:9002/api/products");
-        setProducts(response.data);
+        const data = await getProducts();
+        setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
