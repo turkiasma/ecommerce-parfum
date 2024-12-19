@@ -8,7 +8,7 @@ function PrivateRoute({ children, allowedRoles }) {
 
   // Check if the user is authenticated and has the required role
   if (role) {
-    return allowedRoles.includes(role) ? children : <Navigate to="/" />; // Redirect unauthorized users to home
+    return allowedRoles.includes(role) ? children : <Navigate to="/Login" />; // Redirect unauthorized users to home
   } else {
     return <Navigate to="/Login" />; // Redirect unauthenticated users to login
   }

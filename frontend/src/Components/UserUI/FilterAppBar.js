@@ -1,14 +1,16 @@
 import React from "react";
-import { AppBar, Toolbar} from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 import FilterDrawer from "./FilterDrawer";
 
 const FilterAppBar = () => {
   return (
     <>
-      {/* Static App Bar */}
-      <AppBar position="static" color="default" elevation={1}>
+      <AppBar 
+        position="static" 
+        elevation={1} 
+        sx={{ backgroundColor: '#ffffff' }} 
+      >
         <Toolbar>
-          {/* Place FilterDrawer Button Inside the App Bar */}
           <FilterDrawer />
         </Toolbar>
       </AppBar>

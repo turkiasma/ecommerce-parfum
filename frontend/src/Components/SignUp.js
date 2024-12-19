@@ -1,59 +1,52 @@
 import React, { useState } from "react";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-} from "mdb-react-ui-kit";
+import { MDBBtn, MDBContainer, MDBCard, MDBCardBody, MDBInput } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { signUpUser } from '../services/userService'; // Import signUpUser service
 
 const SignUp = () => {
-  const url = "http://localhost:9002/api/users";
   const navigate = useNavigate();
-
-  // State for form input
   const [user, setUser] = useState({
     userName: "",
     email: "",
     password: "",
   });
 
-  // Handle form input changes
   const handleChange = (e) => {
     setUser({ ...user, [e.target.id]: e.target.value });
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Send POST request with user data
-    axios
-      .post(url, user)
-      .then((response) => {
-        alert(response.data.msg); // Show success message as an alert
-        setUser({ userName: "", email: "", password: "" }); // Clear form fields
-        navigate("/Login"); // Redirect to login page
-      })
-      .catch((error) => {
-        if (error.response && error.response.data) {
-          alert(error.response.data.msg); // Show error message as an alert
-        } else {
-          alert("An unexpected error occurred. Please try again."); // Fallback error message
-        }
-        console.error("Error during signup:", error);
-      });
+    try {
+      const response = await signUpUser(user); // Call the signUpUser service
+      alert(response.msg); // Show success message
+      setUser({ userName: "", email: "", password: "" });
+      navigate("/Login"); // Redirect to login page
+    } catch (error) {
+      if (error.response && error.response.data) {
+        alert(error.response.data.msg); // Show error message
+      } else {
+        alert("An unexpected error occurred. Please try again.");
+      }
+      console.error("Error during signup:", error);
+    }
   };
 
   return (
-    <MDBContainer fluid>
+    <MDBContainer 
+      fluid 
+      className="d-flex justify-content-center align-items-center" 
+      style={{ minHeight: "100vh", flexDirection: "column" }}
+    >
       <div
         className="p-5 bg-image"
         style={{
-          backgroundImage: "url(https://mdbootstrap.com/img/new/textures/full/171.jpg)",
+          backgroundImage: "url(/assets/gold.jpg)",
           height: "300px",
+          width: "100%",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       ></div>
 
@@ -63,11 +56,12 @@ const SignUp = () => {
           marginTop: "-100px",
           background: "hsla(0, 0%, 100%, 0.8)",
           backdropFilter: "blur(30px)",
+          width: "100%",
+          maxWidth: "500px",
         }}
       >
         <MDBCardBody className="p-5 text-center">
           <h2 className="fw-bold mb-5">Sign up now</h2>
-
           <form onSubmit={handleSubmit}>
             <MDBInput
               wrapperClass="mb-4"
@@ -96,17 +90,15 @@ const SignUp = () => {
               onChange={handleChange}
               required
             />
-
-            <MDBBtn className="w-100 mb-4" size="md" type="submit">
+            <MDBBtn
+              className="w-100 mb-4"
+              size="md"
+              type="submit"
+              style={{ backgroundColor: 'white', color: 'black', border: '1px solid #ccc' }}
+            >
               Sign up
             </MDBBtn>
           </form>
-
-          <div className="text-center">
-            <MDBBtn tag="a" color="none" className="mx-3" style={{ color: "#1266f1" }}>
-              {/* Social Icons */}
-            </MDBBtn>
-          </div>
         </MDBCardBody>
       </MDBCard>
     </MDBContainer>

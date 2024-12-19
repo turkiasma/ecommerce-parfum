@@ -29,7 +29,7 @@ const Orders = () => {
   // Handle status update
   const handleUpdateStatus = async (id, status) => {
     try {
-      await updateOrderStatus(id, status);
+      await updateOrderStatus(id, status);//from orderService
       setOrders(
         orders.map((order) =>
           order.id === id ? { ...order, status } : order

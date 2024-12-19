@@ -1,12 +1,14 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import bagService from "../services/bagService";
 import {jwtDecode }from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 export const BagContext = createContext();
 
 export const BagProvider = ({ children }) => {
   const [bag, setBag] = useState([]); // Bag state
   const [total, setTotal] = useState(0); // Total price state
+  const navigate = useNavigate();
 
   // Helper function to get cookie by name
   const getCookie = (name) => {
@@ -52,6 +54,7 @@ export const BagProvider = ({ children }) => {
   // Function to add an item to the bag
   const addToBag = async (productId) => {
     if (!isAuthenticated()) {
+      navigate(`/Login`);
       alert("Please log in to add products to the bag.");
       return;
     }

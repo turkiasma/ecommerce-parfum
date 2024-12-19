@@ -14,8 +14,8 @@ const Video = () => {
           marginBottom: "20px",
         }}
       >
-           {/* Logo Image */}
-           <img
+        {/* Logo Image */}
+        <img
           src="/assets/logos.png" // Replace with the correct path to your logo
           alt="Logo"
           style={{
@@ -23,27 +23,37 @@ const Video = () => {
             width: "340px", // Maintain aspect ratio
           }}
         />
-        <p style={{ fontSize: "1.5rem", lineHeight: "1.6"
- }}>
+        <p style={{ fontSize: "1.5rem", lineHeight: "1.6" }}>
           AURA was built to immerse you in a world of luxury and allure,
           offering a seamless journey to explore the finest perfumes that embody
           elegance and sophistication.
         </p>
       </div>
 
-      {/* Video Embed */}
+      {/* Video Cards */}
       <div
         style={{
           display: "flex", // Flexbox layout
-          justifyContent: "center", // Horizontally center
-          alignItems: "center", // Vertically center
-          padding: "0", // Remove extra padding around the container
-          width: "100%", // Full width to ensure centering
-          height: "500px", // Set a fixed height for clipping
-          overflow: "hidden", // Clip content that overflows
+          justifyContent: "space-between", 
+          alignItems: "center", // Center align items vertically
+          padding: "20px", 
+          width: "100%", 
         }}
       >
-        <div style={{ width: "100%", height: "100%", position: "relative" }}>
+        {/* Left Card */}
+        <div 
+          style={{
+            width: "30%", 
+            backgroundColor: "rgba(255, 255, 255, 0.8)", 
+            padding: "20px", 
+            borderRadius: "10px", 
+            fontFamily: "'Playfair Display', serif",
+            color: "#333", 
+            display: "flex", 
+            flexDirection: "column",
+            alignItems: "center"
+          }}
+        >
           <video
             autoPlay
             muted
@@ -51,19 +61,93 @@ const Video = () => {
             playsInline
             style={{
               width: "100%", // Full width
-              height: "100%", // Full height
+              height: "500px", // Taller height for video
               objectFit: "cover", // Ensures content fills container without stretching
-              borderRadius: "10px", // Optional: Rounded corners
+              borderRadius: "10px", 
+              marginBottom: "10px"
             }}
           >
-            <source src="/videos/vid.mp4" type="video/mp4" />
+            <source src="/videos/vid6.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <p style={{ fontSize: "1rem", lineHeight: "1.4" }}>
+            Discover the Art of Fragrance
+          </p>
+        </div>
+
+        {/* Center Card */}
+        <div 
+          style={{
+            width: "30%", 
+            backgroundColor: "rgba(255, 255, 255, 0.8)", 
+            padding: "20px", 
+            borderRadius: "10px", 
+            fontFamily: "'Playfair Display', serif",
+            color: "#333", 
+            display: "flex", 
+            flexDirection: "column",
+            alignItems: "center"
+          }}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%", 
+              height: "500px", // Taller height for video
+              objectFit: "cover", 
+              borderRadius: "10px", 
+              marginBottom: "10px"
+            }}
+          >
+            <source src="/videos/dior.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p style={{ fontSize: "1rem", lineHeight: "1.4" }}>
+            Experience Elegance Like Never Before
+          </p>
+        </div>
+
+        {/* Right Card */}
+        <div 
+          style={{
+            width: "30%", 
+            backgroundColor: "rgba(255, 255, 255, 0.8)", 
+            padding: "20px", 
+            borderRadius: "10px", 
+            fontFamily: "'Playfair Display', serif",
+            color: "#333", 
+            display: "flex", 
+            flexDirection: "column",
+            alignItems: "center"
+          }}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%", 
+              height: "500px", // Taller height for video
+              objectFit: "cover", 
+              borderRadius: "10px", 
+              marginBottom: "10px"
+            }}
+          >
+            <source src="/videos/vid3.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p style={{ fontSize: "1rem", lineHeight: "1.4" }}>
+            Embark on a Journey of Scent
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Video;
+export default  Video;
 

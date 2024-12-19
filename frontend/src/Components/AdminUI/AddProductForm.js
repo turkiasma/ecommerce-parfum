@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, MenuItem, Select, InputLabel, FormControl, FormHelperText, Box, Typography, Stack } from '@mui/material';
+import { TextField, Button, MenuItem, Select, InputLabel, FormControl, Box, Typography, Stack } from '@mui/material';
 import { createProduct, updateProduct } from '../../services/productService';
 
 const AddProductForm = ({ initialData = null, onSubmitSuccess, onCancel }) => {
@@ -119,10 +119,10 @@ const AddProductForm = ({ initialData = null, onSubmitSuccess, onCancel }) => {
             onChange={handleChange} 
             required 
           />
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="#f8f7f1">
             {isEditMode ? 'Update Product' : 'Add Product'}
           </Button>
-          <Button onClick={onCancel} variant="outlined" color="secondary">
+          <Button onClick={onCancel} variant="outlined" color="#f8f7f1">
             Cancel
           </Button>
         </Stack>

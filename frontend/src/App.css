@@ -25,13 +25,14 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #beb58a;
 }
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -97,7 +98,7 @@ body {
 }
 
 .App-link {
-  color: #61dafb;
+  color: #beac78;
 }
 
 @keyframes App-logo-spin {
@@ -231,20 +232,30 @@ body {
 
 /* Slider Container */
 .slider-container {
-  width: 100%; /* Full width */
-  padding: 0; /* Remove any padding */
-  background-color: black; /* Full width black background */
+  width: 100%;
+  /* Full width */
+  padding: 0;
+  /* Remove any padding */
+  background-color: black;
+  /* Full width black background */
 }
 
 /* Slider Text Styling */
 .slider-container h3 {
-  font-family: 'Cormorant Garamond', serif; /* Elegant serif font */
-  font-size: 1rem; /* Smaller text */
-  color: #ffffff; /* Gold color for text */
-  text-align: center; /* Center the text */
-  letter-spacing: 0.8px; /* Add spacing for elegance */
-  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); /* Slight shadow for text */
-  margin: 10px 0; /* Adjust margins for spacing */
+  font-family: 'Cormorant Garamond', serif;
+  /* Elegant serif font */
+  font-size: 1rem;
+  /* Smaller text */
+  color: #ffffff;
+  /* Gold color for text */
+  text-align: center;
+  /* Center the text */
+  letter-spacing: 0.8px;
+  /* Add spacing for elegance */
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  /* Slight shadow for text */
+  margin: 10px 0;
+  /* Adjust margins for spacing */
 }
 
 /* Slick Slider Adjustments */
@@ -254,12 +265,16 @@ body {
   align-items: center;
 }
 
-.slick-prev, .slick-next {
-  color: #d4af37; /* Gold arrows */
+.slick-prev,
+.slick-next {
+  color: #d4af37;
+  /* Gold arrows */
 }
 
-.slick-prev:hover, .slick-next:hover {
-  color: #fff; /* White on hover for contrast */
+.slick-prev:hover,
+.slick-next:hover {
+  color: #fff;
+  /* White on hover for contrast */
 }
 
 
@@ -281,33 +296,7 @@ body {
   /* Adjust the gap between items */
 }
 
-/*navbar fixed*/
-/* Sticky Navbar */
-/* Navbar container */
-.navbar {
-  display: flex;
-  /* Use Flexbox */
-  justify-content: space-between;
-  /* Space out logo and icons */
-  align-items: center;
-  /* Vertically center items */
-  padding: 0 20px;
-  /* Remove vertical padding, keep horizontal padding */
-  background-color: white;
-  /* Background color */
-  border-bottom: 1.5px solid black;
-  /* Border at the bottom */
-  position: sticky;
-  /* Make the navbar sticky */
-  top: 0;
-  /* Stick to the top */
-  z-index: 10;
-  /* Ensure it stays above other elements */
-  height: 100px;
-  /* Set a height matching the logo */
-  box-sizing: border-box;
-  /* Include padding and border in height calculation */
-}
+
 
 /* Logo container */
 .logo {
@@ -348,169 +337,34 @@ body {
   height: 100%;
   /* Match the navbar height */
 }
-
-
-
-/* Footer.css */
-.footer {
-  background-color: black;
-  color: #fff;
-  padding: 10px 0;
-  text-align: center;
+/* Add this to your CSS file */
+.custom-button {
+  border: 1px solid transparent; /* Remove the default border */
 }
 
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 10px;
+.custom-button:hover {
+  background-color: black !important; /* Set background to black */
+  color: white !important; /* Set text color to white */
+  border: 1px solid black !important; /* Add black border on hover */
 }
 
-.footer-company-name h3 {
-  margin: 0;
-  font-size: 24px;
+.custom-button:focus {
+  outline: none; /* Remove blue focus outline */
+  border: 1px solid black !important; /* Ensure the border stays black on focus */
 }
-
-.footer-socials a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.footer-socials a:hover {
-  color: #c5a880;
-  /* Change this to your desired hover color */}
-
-/*CARD ARE YOU SURE TO DELETE*/
-/* Card Wrapper Styles */
-.card-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Fullscreen dark overlay */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Centers card perfectly */
-  z-index: 9999;
-}
-
-/* Card Styles */
-.card {
-  width: 500px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 30px 20px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
-  position: relative;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Card Content */
-.card-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: center;
-  /* Centers text inside the card */
-}
-
-.card-heading {
-  font-size: 22px;
-  font-weight: 700;
-  color: #1b1b1b;
-  text-align: center;
-}
-
-.card-description {
-  font-weight: 400;
-  font-size: 16px;
-  color: #666;
-  text-align: center;
-  line-height: 1.4;
-}
-
-/* Button Wrapper */
-.card-button-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.card-button {
-  width: 100px;
-  height: 40px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.3s ease-in-out;
-}
-
-.primary {
-  background-color: #ff726d;
-  color: #ffffff;
-  box-shadow: 0px 4px 10px rgba(255, 114, 109, 0.3);
-}
-
-.primary:hover {
-  background-color: #ff4942;
-}
-
-.secondary {
-  background-color: #f1f1f1;
-  color: #555;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.secondary:hover {
-  background-color: #ddd;
-}
-
-/* Exit Button */
-.exit-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
+/* VIEW ALL PRODUCTS */
+.view-all-btn {
+  padding: 10px 20px;
   background-color: transparent;
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  color: #000; /* Text color */
+  border: 1px solid #000; /* Border color */
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
 }
 
-.exit-button:hover svg {
-  fill: #000000;
+.view-all-btn:hover {
+  background-color: #000; /* Black background on hover */
+  color: #fff; /* White text on hover */
 }
-
-.exit-button svg {
-  fill: #afafaf;
-  transition: fill 0.3s ease-in-out;
-}
- 

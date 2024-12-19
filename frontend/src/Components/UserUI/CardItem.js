@@ -36,17 +36,18 @@ const CardItem = ({ perfume, showDetails }) => {
         <Button
           type="primary"
           icon={<BsBag />}
-          style={{ backgroundColor: "#d4af37", color: "black" }}
+          style={{ backgroundColor: "#f8f7f1", color: "black" }}
           onClick={() => addToBag(perfume._id)} // Call addToBag from the context
         >
           Add to Bag
         </Button>,
         !showDetails && (
           <Button
-            type="default"
-            icon={<InfoCircleOutlined />}
-            onClick={handleShowDetails}
-          >
+                type="default"
+                icon={<InfoCircleOutlined />}
+              onClick={handleShowDetails}
+                className="custom-button"
+              >
             More Details
           </Button>
         ),

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/DeleteCard.css'; // Importing CSS styles
 
 const Card = ({ title, description, onConfirm, onCancel }) => {
   return (

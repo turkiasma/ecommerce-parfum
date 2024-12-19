@@ -1,0 +1,67 @@
+/* Navbar styles */
+.navbar-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff;
+    border-bottom: 1px solid #000;
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    height: 110px;
+}
+
+.navbar .logo h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.custom-menu {
+    display: flex;
+    justify-content: center;
+    /* Centers the menu items */
+    gap: 30px;
+    /* Spacing between menu items */
+    padding: 0 30px;
+}
+
+
+.menu-item {
+    display: flex;
+    align-items: center;
+}
+
+.menu-link {
+    text-decoration: none;
+    outline: none;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.menu-link:hover {
+    color: #C49A6C;
+    /* Gold color */
+}
+
+.menu-link:hover .anticon {
+    color: #C49A6C;
+}
+
+/* Underline effect on hover */
+.menu-link:hover {
+    border-bottom: 2px solid #C49A6C;
+    /* Gold underline */
+}
+
+/* Remove focus/active blue border */
+.menu-link:focus,
+.menu-link:active {
+    outline: none;
+    border: none;
+}

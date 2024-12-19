@@ -18,7 +18,7 @@ const FilterDrawer = () => {
   const [snackbarState, setSnackbarState] = useState({
     open: false,
     Transition: SlideTransition,
-  }); // Snackbar state for slide transition
+  });
   const { product, setFilteredProducts } = useContext(ProductContext);
 
   const toggleDrawer = (open) => () => setIsDrawerOpen(open);
@@ -49,22 +49,20 @@ const FilterDrawer = () => {
     });
 
     if (filtered.length === 0) {
-      // No matches found, reset state and show snackbar
       setSelectedScent([]);
       setSelectedSize([]);
       setPriceRange([10, 500]);
-      setIsDrawerOpen(false); // Close the drawer
-      handleSnackbarOpen(SlideTransition); // Show snackbar with slide transition
-      return; // Stop execution to prevent navigation
+      setIsDrawerOpen(false);
+      handleSnackbarOpen(SlideTransition);
+      return;
     }
 
-    // Matches found, update state and navigate
-    setFilteredProducts(filtered); // Update filtered products
+    setFilteredProducts(filtered);
     setSelectedScent([]);
     setSelectedSize([]);
     setPriceRange([10, 500]);
-    setIsDrawerOpen(false); // Close the drawer
-    navigate('/products'); // Navigate only when matches are found
+    setIsDrawerOpen(false);
+    navigate('/products');
   };
 
   return (
@@ -76,7 +74,7 @@ const FilterDrawer = () => {
         TransitionComponent={snackbarState.Transition}
         message="No matched perfumes found. Please adjust your filters."
         key={snackbarState.Transition.name}
-        autoHideDuration={1200} // Automatically hide after 1.2 seconds
+        autoHideDuration={1200}
       />
 
       {/* Button to Open Drawer */}
@@ -84,6 +82,14 @@ const FilterDrawer = () => {
         variant="outlined"
         startIcon={<FilterOutlined />}
         onClick={toggleDrawer(true)}
+        sx={{
+          borderColor: "#C49A6C", // Gold Beige color for border
+          color: "#C49A6C", // Gold Beige color for text
+          "&:hover": {
+            borderColor: "#C49A6C", // Darker shade for hover effect
+            color: "#C49A6C",
+          },
+        }}
       >
         Filter
       </Button>
@@ -96,11 +102,11 @@ const FilterDrawer = () => {
             style={{ position: "absolute", top: 8, right: 8 }}
             onClick={toggleDrawer(false)}
           >
-            <CloseOutlined />
+            <CloseOutlined style={{ color: "black" }} />
           </IconButton>
 
           {/* Filtering Options */}
-          <h4>Select Scents:</h4>
+          <h4 style={{ color: "black" }}>Select Scents:</h4>
           {scentOptions.map((scent) => (
             <div key={scent}>
               <Checkbox
@@ -112,12 +118,18 @@ const FilterDrawer = () => {
                       : [...prev, scent]
                   );
                 }}
+                sx={{
+                  color: "black",
+                  "&.Mui-checked": {
+                    color: "#C49A6C", // Darker shade for checked box
+                  },
+                }}
               />
               {scent}
             </div>
           ))}
 
-          <h4>Select Size:</h4>
+          <h4 style={{ color: "black" }}>Select Size:</h4>
           {sizeOptions.map((size) => (
             <div key={size}>
               <Checkbox
@@ -129,25 +141,42 @@ const FilterDrawer = () => {
                       : [...prev, size]
                   );
                 }}
+                sx={{
+                  color: "black",
+                  "&.Mui-checked": {
+                    color: "#C49A6C", // Darker shade for checked box
+                  },
+                }}
               />
               {size}
             </div>
           ))}
 
-          <h4>Select Price:</h4>
+          <h4 style={{ color: "black" }}>Select Price:</h4>
           <Slider
             value={priceRange}
             onChange={(e, value) => setPriceRange(value)}
             valueLabelDisplay="auto"
             min={10}
             max={500}
+            sx={{
+              color: "#C49A6C", // Gold beige color for the slider
+              "& .MuiSlider-thumb": {
+                backgroundColor: "#C49A6C", // Gold thumb
+              },
+            }}
           />
 
           {/* Validate Button */}
           <Button
             variant="contained"
-            style={{ marginTop: 16 }}
+            style={{ marginTop: 16, backgroundColor: "black", color: "#fff" }}
             onClick={handleValidate}
+            sx={{
+              "&:hover": {
+                backgroundColor: "black",
+              },
+            }}
           >
             Validate
           </Button>

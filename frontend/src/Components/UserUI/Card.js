@@ -5,16 +5,14 @@ const Card = () => {
   return (
     <div>
       {/* Description Section */}
-
-      {/* New Discover Section */}
       <div
         style={{
           textAlign: "center",
           fontSize: "1.2rem",
           fontStyle: "italic",
           fontFamily: "'Playfair Display', serif", // Luxury font style
-
           marginBottom: "30px",
+          marginTop: "40px",
           color: "#555",
         }}
       >
@@ -35,6 +33,7 @@ const Card = () => {
               </div>
             </div>
           </div>
+
           {/* Woody Card */}
           <div className="myCard">
             <div className="innerCard">
@@ -47,6 +46,7 @@ const Card = () => {
               </div>
             </div>
           </div>
+
           {/* Fruity Card */}
           <div className="myCard">
             <div className="innerCard">
@@ -74,12 +74,16 @@ const StyledWrapper = styled.div`
     align-items: center;
     gap: 20px;
     padding: 20px;
+   
+    border-radius: 1rem; /* Optional rounded corners */
   }
+
+
 
   .myCard {
     background-color: transparent;
-    width: 190px;
-    height: 254px;
+    width: 230px;
+    height: 300px;
     perspective: 1000px;
   }
 
@@ -91,6 +95,7 @@ const StyledWrapper = styled.div`
     transition: transform 0.8s;
     transform-style: preserve-3d;
     cursor: pointer;
+  
   }
 
   .myCard:hover .innerCard {
@@ -130,15 +135,15 @@ const StyledWrapper = styled.div`
 
   /* Images from the public/assets folder */
   .image1 {
-    background-image: url("/assets/floral.jpg");
+    background-image: url("/assets/warda.jpg");
   }
 
   .image2 {
-    background-image: url("/assets/woody6.jpg");
+    background-image: url("/assets/bois.jpg");
   }
 
   .image3 {
-    background-image: url("/assets/fruity.jpg");
+    background-image: url("/assets/fruita.jpg");
   }
 `;
 

@@ -1,46 +1,37 @@
 import React from "react";
-import { Menu } from "antd";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import Cookies from 'js-cookie';
+import { Link, useNavigate } from "react-router-dom"; // Import Link and useNavigate
+import { useBag } from "../../context/BagContext"; // Import BagContext
+import { logout } from "../../services/userService"; // Import the logout function
 import {
   UserOutlined, // Profile icon
   ShoppingOutlined, // Bag icon
-  SearchOutlined, // Search icon
+  LogoutOutlined, // Logout icon
 } from "@ant-design/icons";
+import "../../Styles/Navbar.css";
 
 const Navbar = () => {
-  // Define menu items with icons
-  const items1 = [
-    {
-      key: "1",
-      icon: <SearchOutlined style={{ fontSize: "24px", color: "black" }} />,
-      label: null,
-    },
-    {
-      key: "2",
-      icon: (
-        <Link to="/Bag">
-          <ShoppingOutlined style={{ fontSize: "24px", color: "black" }} />
-        </Link>
-      ),
-      label: null,
-    },
+  const { bag } = useBag(); // Access the bag state
+  const navigate = useNavigate(); // To navigate after logout
 
-    {
-      key: "3",
-      icon: (
-        <Link to="/Login">
-          <UserOutlined style={{ fontSize: "24px", color: "black" }} />
-        </Link>
-      ),
-      label: null,
+  // Calculate the total number of items in the bag
+  const totalItems = bag.reduce((sum, item) => sum + item.quantity, 0);
+
+  // Handle logout logic
+  const handleLogout = async () => {
+    try {
+      await logout();// Call the logout function
+      Cookies.remove('authToken') ;
+      navigate("/Login"); // Redirect to the login page
+    } catch (error) {
+      console.error("Failed to log out:", error);
+      alert("Failed to log out. Please try again.");
     }
-
-
-  ];
+  };
 
   return (
     <div className="navbar flex items-center justify-between px-4 bg-white border-b border-black sticky top-0 z-10">
-      {/* Logo replaced with text */}
+      {/* Logo */}
       <div
         className="logo"
         style={{
@@ -62,12 +53,57 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* Icons on the right */}
-      <Menu
-        mode="horizontal"
-        items={items1}
-        className="bg-white border-none flex justify-end"
-      />
+      {/* Custom Menu with icons on the left and right */}
+      <div className="custom-menu flex justify-between w-full">
+        {/* Bag icon on the left */}
+        <div className="menu-item">
+          <Link to="/Bag" className="menu-link" style={{ position: "relative" }}>
+            <ShoppingOutlined style={{ fontSize: "24px", color: "black" }} />
+            {totalItems > 0 && (
+              <span
+                style={{
+                  position: "absolute",
+                  top: -10,
+                  right: -10,
+                  backgroundColor: "red",
+                  color: "white",
+                  borderRadius: "50%",
+                  width: "20px",
+                  height: "20px",
+                  fontSize: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {totalItems}
+              </span>
+            )}
+          </Link>
+        </div>
+
+        {/* User icon in the middle */}
+        <div className="menu-item">
+          <Link to="/Login" className="menu-link">
+            <UserOutlined style={{ fontSize: "24px", color: "black" }} />
+          </Link>
+        </div>
+
+        {/* Logout icon on the right */}
+        <div className="menu-item ml-auto">
+          <button
+            onClick={handleLogout}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "black",
+            }}
+          >
+            <LogoutOutlined style={{ fontSize: "24px", color: "black" }} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
