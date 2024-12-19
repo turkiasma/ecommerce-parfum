@@ -32,6 +32,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "postinstall": "npm install --legacy-peer-deps",
     "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -61,5 +62,9 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15"
   },
-  "proxy": "https://aura-8yfu.onrender.com"
+  "proxy": "https://aura-8yfu.onrender.com",
+  "engines": {
+    "node": ">=18.x"
+  }
 }
+
