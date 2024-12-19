@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useBag } from "../../context/BagContext";
 import Navbar from "../UserUI/Navbar"; // Import Navbar
 import Footer from "../UserUI/Footer"; // Import Footer
+import Card from "../Card"; // Import the confirmation card
 import {
   Table,
   TableBody,
@@ -29,11 +30,34 @@ const Bag = () => {
   const { bag, total, updateQuantity, deleteItem, confirmBag } = useBag();
 
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [deleteCardOpen, setDeleteCardOpen] = useState(false); // Controls delete confirmation card
+  const [itemToDelete, setItemToDelete] = useState(null); // Tracks which item to delete
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
 
   const handleDialogOpen = () => setDialogOpen(true);
   const handleDialogClose = () => setDialogOpen(false);
   const handlePaymentSelect = (event) => setSelectedPaymentMethod(event.target.value);
+
+  // Handles the delete button click for a specific item
+  const handleDeleteClick = (productId) => {
+    setItemToDelete(productId); // Store the product to be deleted
+    setDeleteCardOpen(true); // Open delete confirmation card
+  };
+
+  // Handles canceling the deletion
+  const handleCancelDelete = () => {
+    setItemToDelete(null); // Clear the item to be deleted
+    setDeleteCardOpen(false); // Close delete confirmation card
+  };
+
+  // Handles confirming the deletion of the item
+  const handleConfirmDelete = () => {
+    if (itemToDelete) {
+      deleteItem(itemToDelete); // Call the delete function from context
+      alert("Item deleted successfully!"); // Success message
+    }
+    handleCancelDelete(); // Reset state
+  };
 
   const handleConfirmOrder = async () => {
     try {
@@ -84,7 +108,7 @@ const Bag = () => {
                     </TableCell>
                     <TableCell>${item.productId.price * item.quantity}</TableCell>
                     <TableCell>
-                      <IconButton onClick={() => deleteItem(item.productId._id)}>
+                      <IconButton onClick={() => handleDeleteClick(item.productId._id)}>
                         <DeleteIcon />
                       </IconButton>
                     </TableCell>
@@ -116,6 +140,15 @@ const Bag = () => {
         )}
       </div>
 
+      {/* Image before Footer */}
+      <div style={{ textAlign: "center", marginBottom: "20px", marginTop: "20px" }}>
+        <img 
+          src='/assets/pay.png' 
+          alt="Shopping Bag" 
+          style={{ maxWidth: "100%", height: "auto", borderRadius: "8px", marginTop: "150px" }} 
+        />
+      </div>
+
       {/* Payment Dialog */}
       <Dialog
         open={dialogOpen}
@@ -123,7 +156,7 @@ const Bag = () => {
         sx={{
           "& .MuiDialog-paper": {
             width: "600px", // Adjust the width of the dialog
-            maxHeight: "80%", // Adjust the max height if needed
+            maxHeight: "50%", // Adjusted max height for more space
           },
         }}
       >
@@ -152,6 +185,16 @@ const Bag = () => {
         </RadioGroup>
         <Button onClick={handleConfirmOrder}>Confirm</Button>
       </Dialog>
+
+      {/* Delete Confirmation Card */}
+      {deleteCardOpen && (
+        <Card 
+          title="Are you sure you want to delete this item?"
+          description="This action cannot be undone."
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+        />
+      )}
 
       {/* Footer */}
       <Footer />
