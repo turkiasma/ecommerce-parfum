@@ -15,7 +15,7 @@ export function UserRole() {
     }
   }
 
-  console.warn("No token found"); // Warn if no token is present
+  console.log("No token found"); // Warn if no token is present
   return null; // No token means unauthenticated user
 }
 
