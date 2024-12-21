@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:9002/api'; // Base API URL
+const apiUrl = 'https://aura-8yfu.onrender.com/api'; // Base API URL
 
 export const logout = async () => {
   try {

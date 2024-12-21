@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:9002/api/products';
+const apiUrl = 'https://aura-8yfu.onrender.com/api/products';
 
 // **Fetch all products**
 export const getProducts = async () => {
