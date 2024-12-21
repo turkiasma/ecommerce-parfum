@@ -18,7 +18,7 @@ connectDb();
 
 // Use CORS middleware
 app.use(cors({
-  origin: "http://localhost:3000", // Allow requests from the frontend
+  origin: "https://parfumn-aura-5x6k.onrender.com", // Allow requests from the frontend
   methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods
   credentials: true // Allow cookies to be sent
 }));
