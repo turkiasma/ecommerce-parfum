@@ -47,8 +47,8 @@ const signIn = async (req, res) => {
         // Set the cookie with the token
         res.cookie("authToken", token, {
           httpOnly: false,
-          secure: false, // Use false for local testing (no HTTPS)
-          sameSite: "Strict", // Prevent CSRF attacks
+          secure: true, // Use false for local testing (no HTTPS)
+          sameSite:"None", // Prevent CSRF attacks
           maxAge: 60 * 60 * 1000, // Cookie expires in 1 hour
         });
 
