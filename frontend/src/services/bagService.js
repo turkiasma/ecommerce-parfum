@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "https://aura-8yfu.onrender.com/api/bag";
+const API_BASE = "https://aura-backend-d5cv.onrender.com/api/bag";
 
 const bagService = {
   async fetchBag() {
