@@ -49,7 +49,8 @@ const signIn = async (req, res) => {
           httpOnly: false,
           secure: true, // Use false for local testing (no HTTPS)
           sameSite:"None", // Prevent CSRF attacks
-          maxAge: 60 * 60 * 1000, // Cookie expires in 1 hour
+          maxAge: 60 * 60 * 1000,
+          domain: "https://aura-backend-d5cv.onrender.com", // Cookie expires in 1 hour
         });
 
         return res.status(200).json({ user: foundUser, token });
